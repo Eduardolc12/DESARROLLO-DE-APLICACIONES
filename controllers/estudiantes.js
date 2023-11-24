@@ -6,16 +6,12 @@ const dao = require('../middlewares/estudiantes');
 const estudiantesGet = async (req, res = response) => {
   const estudents = await dao.getAllEstudent();
   res.send(estudents)
-  /*
-  res.json({
-    users
-  });
-  */
+
 }
 
 const estudiantesGetById = async (req, res = response) => {
   const { matricula } = req.params;
-  const student = await dao.getAllUserById(matricula);
+  const student = await dao.getAllEstudentById(matricula);
   res.json({
     student
   });

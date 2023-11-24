@@ -11,8 +11,9 @@ const getAllEstudent = async () => {
 }
 
 const getAllEstudentById = async (matricula) => {
-  try {
+  try{
     const [rows, fields] = await (await conexion)
+    
       .execute('SELECT * FROM estudiantes WHERE matricula = ?', [matricula]);
     return rows;
   } catch (error) {
@@ -39,6 +40,7 @@ const getIdByCredentials = async (correo_institucional, password) => {
 
 const createEstudent = async (matricula, nombre, apellido_paterno, apellido_materno, correo_institucional, password) => {
   try {
+   
     const [student] = await (await conexion)
       .execute('INSERT INTO estudiantes (matricula, nombre, apellido_paterno, apellido_materno, correo_institucional, password) VALUES (?, ?, ?, ?, ?, ?)',
         [matricula, nombre, apellido_paterno, apellido_materno, correo_institucional, password]);

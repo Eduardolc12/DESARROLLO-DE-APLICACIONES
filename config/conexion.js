@@ -9,4 +9,4 @@ const connection = mysql.createConnection({
   database: 'im_hungry'
 });
 
-module.exports = connection;
+module.exports = connection

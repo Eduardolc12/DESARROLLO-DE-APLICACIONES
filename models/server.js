@@ -21,7 +21,16 @@ class Server{
     }
 
     routes(){
-        this.app.use('/api/imhungry', require('../routes/estudiantes'));
+        this.app.use('/api/estudiantes', require('../routes/estudiantes'));
+        this.app.use('/api/pedido', require('../routes/pedido'));
+        this.app.use('/api/comprador', require('../routes/comprador'));
+        this.app.use('/api/producto', require('../routes/producto'));
+        this.app.use('/api/productosFavoritos', require('../routes/productosFavoritos'));
+        this.app.use('/api/valoracion', require('../routes/valoracion'));
+        this.app.use('/api/vendedor', require('../routes/vendedor'));
+        this.app.use('/api/venta', require('../routes/venta'));
+
+
         this.app.use('/api-doc',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
     }
 

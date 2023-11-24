@@ -1,18 +1,18 @@
 const {Router} = require('express');
 const {
     pedidosGet,
-    pedidosGetByName,
+    pedidosGetById,
     pedidosCreate,
-    pedidosUpdate,
+    pedidosUpdate
     
 } = require('../controllers/pedido');
 const{ validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();
 
-router.get('/', pedidosGet);
+router.get('/all', pedidosGet);
 
-router.get('/:name', pedidosGetByName);
+router.get('/:name', pedidosGetById);
 
 router.post('/', pedidosCreate);
 

@@ -39,7 +39,7 @@ const updateOrder = async (id_pedido ,preferencias ,fecha_pedido ,precio_total ,
   try {
     const [output] = await (await conexion)
       .execute('UPDATE estudiantes SET preferencias = ? ,fecha_pedido = ? ,precio_total = ? ,estado = ? ,id_venta = ? ,matricula = ? ,id_producto = ? WHERE id_pedido = ?',
-        [matricula, nombre, apellido_paterno, apellido_materno, correo_institucional, password]);
+        [id_pedido ,preferencias ,fecha_pedido ,precio_total ,estado ,id_venta ,matricula ,id_producto]);
     return output;
   } catch (error) {
     console.error('Error al intentar actualizar el pedido:', error);

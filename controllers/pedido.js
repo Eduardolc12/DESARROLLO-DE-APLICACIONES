@@ -1,14 +1,14 @@
 const { request, response } = require('express');
 const dao = require('../middlewares/pedido');
 
-const pedidoGet = async (req, res = response) => {
-  const orders= await dao.getAllOrder;
+const pedidosGet = async (req, res = response) => {
+  const orders= await dao.getAllOrder();
   res.send(orders)
 
 }
 
-const pedidoGetById= async (req, res = response) => {
-  const { id_pedido } = req.params;
+const pedidosGetById= async (req, res = response) => {
+  const { id_pedido} = req.params;
   const order = await dao.getAllOrderById(id_pedido);
   res.json({
     order
@@ -16,7 +16,7 @@ const pedidoGetById= async (req, res = response) => {
 }
 
 
-const pedidoCreate = async (req, res = response) => {
+const pedidosCreate = async (req, res = response) => {
   const {preferencias ,fecha_pedido ,precio_total ,estado ,id_venta ,matricula ,id_producto} = req.body;
   try {
    
@@ -30,7 +30,7 @@ const pedidoCreate = async (req, res = response) => {
   }
 }
 
-const pedidoUpdate = async (req, res) => {
+const pedidosUpdate = async (req, res) => {
   const { id_pedido } = req.params;
   try {
     const { preferencias ,fecha_pedido ,precio_total ,estado ,id_venta ,matricula ,id_producto} = req.body;
@@ -47,9 +47,9 @@ const pedidoUpdate = async (req, res) => {
 }
 
 module.exports = {
-  pedidoGet,
-  pedidoGetById,
-  pedidoCreate,
-  pedidoUpdate,
+  pedidosGet,
+    pedidosGetById,
+    pedidosCreate,
+    pedidosUpdate
   
 };

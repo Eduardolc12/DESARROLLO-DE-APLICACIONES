@@ -2,7 +2,7 @@ const {Router} = require('express');
 const {
     ventaGet,
     ventaCreate,
-} = require('../controllers/producto');
+} = require('../controllers/venta');
 const{ validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();

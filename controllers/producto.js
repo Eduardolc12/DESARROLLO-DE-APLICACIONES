@@ -4,7 +4,7 @@ const crypto = require("crypto-js");
 const dao = require('../middlewares/producto');
 
 const productoGet = async (req, res = response) => {
-  const productos = await dao.getAllProducts;
+  const productos = await dao.getAllProducts();
   res.send(productos)
  
 }

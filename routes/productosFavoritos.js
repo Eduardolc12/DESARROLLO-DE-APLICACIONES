@@ -3,7 +3,7 @@ const {
     productoFavGet,
     productoFavCreate,
     productoFavDelete,
-} = require('../controllers/producto');
+} = require('../controllers/productosFavoritos');
 const{ validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();
