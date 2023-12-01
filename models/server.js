@@ -21,7 +21,7 @@ class Server{
     }
 
     routes(){
-        this.app.use('/api/estudiantes', require('../routes/estudiantes'));
+        this.app.use('/api/estudiantes', require('../routes/estudiante'));
         this.app.use('/api/pedido', require('../routes/pedido'));
         this.app.use('/api/comprador', require('../routes/comprador'));
         this.app.use('/api/producto', require('../routes/producto'));
