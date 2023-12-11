@@ -1,6 +1,6 @@
 const { request, response } = require('express');
 const { generarJWT } = require('../helpers/generar-jwt');
-const crypto = require("crypto-js");
+const crypto = require('crypto-js');
 const dao = require('../middlewares/estudiante');
 
 const estudiantesGet = async (req, res = response) => {
@@ -13,14 +13,16 @@ const estudiantesGetById = async (req, res = response) => {
   const { matricula } = req.params;
   const student = await dao.getAllEstudentById(matricula);
   res.json({
+   
     student
+
   });
 }
 
 const estudiantesLogin = async (req, res = response) => {
-  const { correo_institucional, password } = req.body;
+  const { correoInstitucional, password } = req.body;
   const passcipher = crypto.MD5(password);
-  const student = await dao.getIdByCredentials(correo_institucional, passcipher.toString());
+  const student = await dao.getIdByCredentials(correoInstitucional, passcipher.toString());
   if ( student== null) {
     res.status(404).json({ msg: "verifique sus credenciales de acceso" });
   }
@@ -39,10 +41,10 @@ const estudiantesLogin = async (req, res = response) => {
 }
 
 const estudiantesCreate = async (req, res = response) => {
-  const { matricula, nombre, apellido_paterno, apellido_materno, correo_institucional, password } = req.body;
+  const { matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, fotoPerfil,fotoCredencial} = req.body;
   try {
     const cifrada = crypto.MD5(password);
-    const student = await dao.createUser(matricula, nombre, apellido_paterno, apellido_materno, correo_institucional, cifrada.toString());
+    const student = await dao.createUser(matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, cifrada.toString(),fotoPerfil,fotoCredencial );
     const idGenerated = student.matricula;
     res.json({
       id: idGenerated
@@ -55,9 +57,9 @@ const estudiantesCreate = async (req, res = response) => {
 const estudiantesUpdate = async (req, res) => {
   const { matricula } = req.params;
   try {
-    const { nombre, apellido_paterno, apellido_materno, correo_institucional, password } = req.body;
+    const { nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password ,fotoPerfil,fotoCredencial} = req.body;
     const cifrada = crypto.MD5(password);
-    const output = await dao.updateUser(nombre, apellido_paterno, apellido_materno, correo_institucional, cifrada.toString());
+    const output = await dao.updateUser(nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, cifrada.toString(),fotoPerfil,fotoCredencial);
     res.json({
       msg: "Datos del estudiante actualizados",
       matricula,

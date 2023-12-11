@@ -22,11 +22,11 @@ const getAllEstudentById = async (matricula) => {
   }
 }
 
-const getIdByCredentials = async (correo_institucional, password) => {
+const getIdByCredentials = async (correoInstitucional, password) => {
   try {
 
     const [rows, fields] = await (await conexion)
-      .execute('SELECT matricula, tipoVendedor, tipoComprador FROM estudiante WHERE  correo_institucional= ? AND password= ?', [correo_institucional, password]);
+      .execute('SELECT matricula, tipoVendedor, tipoComprador FROM estudiante WHERE  correoInstitucional= ? AND password= ?', [correoInstitucional, password]);
     if (rows.length > 0) {
       return rows;
     } else {
@@ -38,12 +38,12 @@ const getIdByCredentials = async (correo_institucional, password) => {
   }
 }
 
-const createEstudent = async (matricula, nombre, apellido_paterno, apellido_materno, correo_institucional, password, tipoVendedor,tipoComprador) => {
+const createEstudent = async (matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial) => {
   try {
    
     const [student] = await (await conexion)
-      .execute('INSERT INTO estudiante (matricula, nombre, apellido_paterno, apellido_materno, correo_institucional, password, tipoVendedor, tipoComprador) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-        [matricula, nombre, apellido_paterno, apellido_materno, correo_institucional, password, tipoVendedor, tipoComprador]);
+      .execute('INSERT INTO estudiante (matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, tipoVendedor, tipoComprador,fotoPerfil,fotoCredencial) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, tipoVendedor, tipoComprador,fotoPerfil,fotoCredencial ]);
     return student;
   } catch (error) {
     console.error('Error al intentar crear el cuenta:', error);
@@ -51,11 +51,11 @@ const createEstudent = async (matricula, nombre, apellido_paterno, apellido_mate
   }
 }
 
-const updateEstudent = async (matricula, nombre, apellido_paterno, apellido_materno, correo_institucional, password) => {
+const updateEstudent = async (matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, fotoPerfil,fotoCredencial) => {
   try {
     const [output] = await (await conexion)
-      .execute('UPDATE estudiante SET nombre= ? , apellido_paterno= ?, apellido_materno= ?, correo_institucional= ?, password= ? WHERE matricula = ?',
-        [matricula, nombre, apellido_paterno, apellido_materno, correo_institucional, password]);
+      .execute('UPDATE estudiante SET nombre= ? , apellidoPaterno= ?, apellidoMaterno= ?, correoInstitucional= ?, password= ?,fotoPerfil= ?,fotoCredencial= ? WHERE matricula = ?',
+        [matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, fotoPerfil,fotoCredencial]);
     return output;
   } catch (error) {
     console.error('Error al intentar actualizar cuenta:', error);

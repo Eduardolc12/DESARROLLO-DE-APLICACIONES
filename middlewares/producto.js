@@ -23,13 +23,13 @@ const getAllProductsByName = async (nombre) => {
 
 
 
-const createProduct = async (id_producto,nombre,descripcion,cantidad_disponible,
-    hora_venta_inicial,hora_venta_final,punto_encuentro,precio,estado,foto) => {
+const createProduct = async (id_producto,nombre,descripcion,cantidadDisponible,
+  horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto) => {
 
   try {
     const [product] = await (await conexion)
-      .execute('INSERT INTO producto (id_producto,nombre,descripcion,cantidad_disponible,hora_venta_inicial,hora_venta_final,punto_encuentro,precio,estado,foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [id_producto,nombre,descripcion,cantidad_disponible,hora_venta_inicial,hora_venta_final,punto_encuentro,precio,estado,foto]);
+      .execute('INSERT INTO producto (id_producto,nombre,descripcion,cantidadDisponible,horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [id_producto,nombre,descripcion,cantidadDisponible,horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto]);
     return product;
   } catch (error) {
     console.error('Error al intentar crear el producto:', error);
@@ -37,11 +37,11 @@ const createProduct = async (id_producto,nombre,descripcion,cantidad_disponible,
   }
 }
 
-const updateProduct = async (id_producto,nombre,descripcion,cantidad_disponible,hora_venta_inicial,hora_venta_final,punto_encuentro,precio,estado,foto) => {
+const updateProduct = async (id_producto,nombre,descripcion,cantidadDisponible,horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto) => {
   try {
     const [output] = await (await conexion)
-      .execute('UPDATE producto SET nombre= ? descripcion= ?,cantidad_disponible= ?,hora_venta_inicial= ?,hora_venta_final= ?,punto_encuentro= ?,precio,estado= ?,foto= ? WHERE id_producto = ?',
-        [id_producto,nombre,descripcion,cantidad_disponible,hora_venta_inicial,hora_venta_final,punto_encuentro,precio,estado,foto]);
+      .execute('UPDATE producto SET nombre= ? descripcion= ?,cantidadDisponible= ?,horaVentaInicial= ?,horaVentaFinal= ?,puntoEncuentro= ?,precio=?,estado= ?,foto= ? WHERE id_producto = ?',
+        [id_producto,nombre,descripcion,cantidadDisponible,horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto]);
     return output;
   } catch (error) {
     console.error('Error al intentar actualizar el producto:', error);

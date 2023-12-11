@@ -19,11 +19,11 @@ const productoGetByName= async (req, res = response) => {
 
 
 const productoCreate = async (req, res = response) => {
-  const {nombre,descripcion,cantidad_disponible,
-    hora_venta_inicial,hora_venta_final,punto_encuentro,precio,estado,foto} = req.body;
+  const {id_producto,nombre,descripcion,cantidadDisponible,
+    horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto} = req.body;
   try {
-    const product = await dao.createUser(nombre,descripcion,cantidad_disponible,
-        hora_venta_inicial,hora_venta_final,punto_encuentro,precio,estado,foto);
+    const product = await dao.createUser(id_producto,nombre,descripcion,cantidadDisponible,
+      horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto);
         const idGenerated = product.insertId;
     
     res.json({
@@ -37,11 +37,11 @@ const productoCreate = async (req, res = response) => {
 const productoUpdate = async (req, res) => {
   const { id_producto} = req.params;
   try {
-    const { nombre,descripcion,cantidad_disponible,
-        hora_venta_inicial,hora_venta_final,punto_encuentro,precio,estado,foto} = req.body;
+    const { nombre,descripcion,cantidadDisponible,
+      horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto} = req.body;
    
-    const output = await dao.updateProduct(nombre,descripcion,cantidad_disponible,
-        hora_venta_inicial,hora_venta_final,punto_encuentro,precio,estado,foto);
+    const output = await dao.updateProduct(nombre,descripcion,cantidadDisponible,
+      horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto);
     res.json({
       msg: "Datos del producto actualizados",
       id_producto,
