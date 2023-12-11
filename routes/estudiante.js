@@ -17,15 +17,15 @@ router.post('/login', estudiantesLogin);
 
 router.get('/all', estudiantesGet);
 
-router.get('/:id', estudiantesGetById);
+router.get('/:matricula', estudiantesGetById);
 
 router.post('/', estudiantesCreate);
 
-router.put('/:id', [validarJWT], estudiantesUpdate);
+router.put('/:matricula', [validarJWT], estudiantesUpdate);
 
-router.patch('/:id', [validarJWT], estudiantesUpdatePass);
+router.patch('/:matricula', [validarJWT], estudiantesUpdatePass);
 
-router.delete('/:id', [validarJWT], estudiantesDelete);
+router.delete('/:matricula', [validarJWT], estudiantesDelete);
 
 
 module.exports = router;
