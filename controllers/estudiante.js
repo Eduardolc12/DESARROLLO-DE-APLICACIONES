@@ -11,7 +11,7 @@ const estudiantesGet = async (req, res = response) => {
 }
 
 const estudiantesGetById = async (req, res = response) => {
-  console.log("recibiendo una peticción en estudiantesgetbyid");
+  console.log("recibiendo una petición en estudiantesgetbyid");
   const { matricula } = req.params;
   const student = await dao.getAllEstudentById(matricula);
   res.json({
