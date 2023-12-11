@@ -11,10 +11,10 @@ const estudiantesGet = async (req, res = response) => {
 
 const estudiantesGetById = async (req, res = response) => {
   const { matricula } = req.params;
-  const student = await dao.getAllEstudentById(matricula);
+  const estudiante = await dao.getAllEstudentById(matricula);
   res.json({
    
-    student
+    estudiante
 
   });
 }
