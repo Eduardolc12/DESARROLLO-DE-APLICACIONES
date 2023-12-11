@@ -4,16 +4,18 @@ const crypto = require("crypto-js");
 const dao = require('../middlewares/estudiante');
 
 const estudiantesGet = async (req, res = response) => {
+  console.log("recibiendo una peticción en estudiantes");
   const estudents = await dao.getAllEstudent();
   res.send(estudents)
 
 }
 
 const estudiantesGetById = async (req, res = response) => {
+  console.log("recibiendo una peticción en estudiantesgetbyid");
   const { matricula } = req.params;
   const student = await dao.getAllEstudentById(matricula);
   res.json({
-    student
+    estudiante : student[0]
   });
 }
 

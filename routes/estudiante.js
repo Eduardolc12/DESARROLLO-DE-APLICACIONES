@@ -17,7 +17,7 @@ router.post('/login', estudiantesLogin);
 
 router.get('/all', estudiantesGet);
 
-router.get('/:id', estudiantesGetById);
+router.get('/:matricula', estudiantesGetById);
 
 router.post('/', estudiantesCreate);
 
