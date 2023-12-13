@@ -11,9 +11,11 @@ const estudiantesGet = async (req, res = response) => {
 }
 
 const estudiantesGetById = async (req, res = response) => {
+
   console.log("recibiendo una petición en estudiantesgetbyid");
   const { matricula } = req.params;
   const student = await dao.getAllEstudentById(matricula);
+  console.log("matricula cliente: " + matricula)
   res.json({
     estudiante : student[0]
   });

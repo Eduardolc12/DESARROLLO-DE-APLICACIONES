@@ -15,6 +15,7 @@ const getAllEstudentById = async (matricula) => {
     const [rows, fields] = await (await conexion)
     
       .execute('SELECT * FROM estudiante WHERE matricula = ?', [matricula]);
+
     return rows;
   } catch (error) {
     console.error('Error al obtener el estudiante:', error);
