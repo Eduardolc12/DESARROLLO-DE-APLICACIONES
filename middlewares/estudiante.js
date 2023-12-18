@@ -40,11 +40,23 @@ const getIdByCredentials = async (correoInstitucional, password) => {
 
 const createEstudent = async (matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial) => {
   try {
-   
-    const [student] = await (await conexion)
-      .execute('INSERT INTO estudiante (matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, tipoVendedor, tipoComprador,fotoPerfil,fotoCredencial) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, tipoVendedor, tipoComprador,fotoPerfil,fotoCredencial ]);
-    return student;
+    const matriculaValida = matricula !== undefined ? matricula : null;
+    const nombreValido = nombre !== undefined ? nombre : null;
+    const apellidoPaternoValido = apellidoPaterno !== undefined ? apellidoPaterno : null;
+    const apellidoMaternoValido = apellidoMaterno !== undefined ? apellidoMaterno : null;
+    const correoInstitucionalValido = correoInstitucional !== undefined ? correoInstitucional : null;
+    const passwordValida = password !== undefined ? password : null;
+    const tipoVendedorValido = tipoVendedor !== undefined ? tipoVendedor : null;
+    const tipoCompradorValido = tipoComprador !== undefined ? tipoComprador : null;
+    const fotoPerfilValida = fotoPerfil !== undefined ? fotoPerfil : null;
+    const fotoCredencialValida = fotoCredencial !== undefined ? fotoCredencial : null;
+
+    // Utilizar los valores verificados en la consulta SQL
+    const [estudiante] = await (await conexion)
+      .execute('INSERT INTO estudiante (matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, tipoVendedor, tipoComprador, fotoPerfil, fotoCredencial) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [matriculaValida, nombreValido, apellidoPaternoValido, apellidoMaternoValido, correoInstitucionalValido, passwordValida, tipoVendedorValido, tipoCompradorValido, fotoPerfilValida, fotoCredencialValida]);
+    return estudiante;
+
   } catch (error) {
     console.error('Error al intentar crear el cuenta:', error);
     throw error;
