@@ -10,8 +10,13 @@ const compradorGet = async (req, res = response) => {
 const compradorCreate = async (req, res = response) => {
   const {idComprador,matricula,id_producto} = req.body;
   try {
-    const buyer = await dao.createComprador(idComprador,matricula,id_producto);
-        const idGenerated = buyer.insertId;
+    const idCompradorValido = idComprador !== undefined ? idComprador : null;
+    const matriculaValida = matricula !== undefined ? matricula : null;
+    const idProductoValido = id_producto !== undefined ? id_producto : null;
+
+    // Utilizar los valores verificados en la consulta SQL
+    const buyer = await dao.createComprador(idCompradorValido, matriculaValida, idProductoValido);
+    const idGenerated = idComprador;
     
     res.json({
         msg: "creación exitosa",

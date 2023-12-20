@@ -10,9 +10,10 @@ const getAllComprador = async () => {
   }
 }
 
-const createComprador = async () => {
+const createComprador = async (idComprador,matricula,id_producto) => {
 
   try {
+
     const [salesPerson] = await (await conexion)
       .execute('INSERT INTO comprador (idComprador,matricula,id_producto) VALUES (?, ?, ?)',
         [idComprador,matricula,id_producto]);
@@ -26,10 +27,10 @@ const createComprador = async () => {
 
 const deleteComprador = async (idComprador) => {
     try {
-      const [output] = await (await conexion)
+      const [salesPerson] = await (await conexion)
         .execute('DELETE FROM comprador WHERE idComprador = ?',
           [idComprador]);
-      return output;
+      return salesPerson;
     } catch (error) {
       console.error('Error al intentar eliminar comprador:', error);
       throw error;
