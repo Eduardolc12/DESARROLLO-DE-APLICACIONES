@@ -41,25 +41,25 @@ const estudiantesLogin = async (req, res = response) => {
 }
 
 const estudiantesCreate = async (req, res = response) => {
-  const { matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, fotoPerfil,fotoCredencial} = req.body;
+  const { matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password,  tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial} = req.body;
   try {
-    const cifrada = crypto.MD5(password);
-    const student = await dao.createUser(matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, cifrada.toString(),fotoPerfil,fotoCredencial );
-    const idGenerated = student.matricula;
+    const estudiante = await dao.createEstudent(matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial );
+    const idGenerated = matricula;
     res.json({
-      id: idGenerated
+      matricula: idGenerated
     });
   } catch (error) {
     res.status(500).json({ msg: "Error al crear el cuenta" });
+    
   }
 }
 
 const estudiantesUpdate = async (req, res) => {
   const { matricula } = req.params;
   try {
-    const { nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password ,fotoPerfil,fotoCredencial} = req.body;
-    const cifrada = crypto.MD5(password);
-    const output = await dao.updateUser(nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, cifrada.toString(),fotoPerfil,fotoCredencial);
+    const { nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password ,  tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial} = req.body;
+   
+    const output = await dao.updateUser(nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password,  tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial);
     res.json({
       msg: "Datos del estudiante actualizados",
       matricula,

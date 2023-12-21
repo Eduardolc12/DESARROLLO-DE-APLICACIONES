@@ -21,11 +21,11 @@ router.get('/:matricula', estudiantesGetById);
 
 router.post('/', estudiantesCreate);
 
-router.put('/:matricula', [validarJWT], estudiantesUpdate);
+router.put('/:matricula',estudiantesUpdate);
 
-router.patch('/:matricula', [validarJWT], estudiantesUpdatePass);
+router.patch('/:matricula',estudiantesUpdatePass);
 
-router.delete('/:matricula', [validarJWT], estudiantesDelete);
+router.delete('/:matricula', estudiantesDelete);
 
 
 module.exports = router;
