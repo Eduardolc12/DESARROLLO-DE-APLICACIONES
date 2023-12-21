@@ -11,7 +11,7 @@ const vendedorGet = async (req, res = response) => {
 const vendedorCreate = async (req, res = response) => {
   const {idVendedor,matricula,id_producto} = req.body;
   try {
-    const salesPerson = await dao.createFavProduct(idVendedor,matricula,id_producto);
+    const salesPerson = await dao.createVendedor(idVendedor,matricula,id_producto);
         const idGenerated = salesPerson.insertId;
     
     res.json({

@@ -13,9 +13,15 @@ const getAllFavProducts = async () => {
 const createFavProduct = async (idFavoritos,matricula,id_producto) => {
 
   try {
+    const idFavoritoValido = id_favorito !== undefined ? id_favorito : null;
+    const matriculaValida = matricula !== undefined ? matricula : null;
+    const idProductoValido = id_producto !== undefined ? id_producto : null;
+
+    // Utilizar los valores verificados en la consulta SQL
     const [product] = await (await conexion)
-      .execute('INSERT INTO productosfavoritos (idFavoritos,matricula,id_producto) VALUES (?, ?, ?)',
-        [idFavoritos,matricula,id_producto]);
+      .execute('INSERT INTO productosfavoritos (id_favorito, matricula, id_producto) VALUES (?, ?, ?)',
+        [idFavoritoValido, matriculaValida, idProductoValido]);
+   
     return product;
   } catch (error) {
     console.error('Error al intentar crear el producto:', error);

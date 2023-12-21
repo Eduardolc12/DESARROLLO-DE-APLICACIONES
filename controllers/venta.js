@@ -14,7 +14,7 @@ const ventaGet = async (req, res = response) => {
 const ventaCreate = async (req, res = response) => {
   const {} = req.body;
   try {
-    const sale = await dao.createUser(cantidad, fecha_venta,precio_total);
+    const sale = await dao.createVenta(cantidad, fecha_venta,precio_total);
         const idGenerated = sale.insertId;
     
     res.json({
