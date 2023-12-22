@@ -22,7 +22,7 @@ const productoCreate = async (req, res = response) => {
   const {id_producto,nombre,descripcion,cantidadDisponible,
     horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto} = req.body;
   try {
-    const product = await dao.createUser(id_producto,nombre,descripcion,cantidadDisponible,
+    const product = await dao.createProduct(id_producto,nombre,descripcion,cantidadDisponible,
       horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto);
         const idGenerated = product.insertId;
     

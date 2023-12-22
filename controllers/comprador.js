@@ -30,7 +30,7 @@ const compradorCreate = async (req, res = response) => {
 const compradorDelete= async (req, res) => {
   const { idComprador} = req.params;
   try {
-    const output = await dao.deleteVendedor(idComprador);
+    const output = await dao.deleteComprador(idComprador);
     res.json({
       msg: "comprador eliminado",
       idComprador,

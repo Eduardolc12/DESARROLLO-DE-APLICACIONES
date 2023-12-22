@@ -28,7 +28,7 @@ const productoFavCreate = async (req, res = response) => {
 const productoFavDelete= async (req, res) => {
   const { idFavoritos} = req.params;
   try {
-    const output = await dao.deleteFavProduct(idFavoritosd);
+    const output = await dao.deleteFavProduct(idFavoritos);
     res.json({
       msg: "producto eliminado de favoritos",
       idFavoritos,

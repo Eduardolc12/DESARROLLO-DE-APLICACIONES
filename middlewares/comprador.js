@@ -14,9 +14,14 @@ const createComprador = async (idComprador,matricula,id_producto) => {
 
   try {
 
+    const idCompradorValido = idComprador !== undefined ? idComprador : null;
+    const matriculaValida = matricula !== undefined ? matricula : null;
+    const idProductoValido = id_producto !== undefined ? id_producto : null;
+
+    // Utilizar los valores verificados en la consulta SQL
     const [salesPerson] = await (await conexion)
-      .execute('INSERT INTO comprador (idComprador,matricula,id_producto) VALUES (?, ?, ?)',
-        [idComprador,matricula,id_producto]);
+      .execute('INSERT INTO comprador (idComprador, matricula, id_producto) VALUES (?, ?, ?)',
+        [idCompradorValido, matriculaValida, idProductoValido]);
     return salesPerson;
   } catch (error) {
     console.error('Error al intentar crear Comprador:', error);

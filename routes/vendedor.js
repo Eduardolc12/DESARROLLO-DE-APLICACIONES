@@ -11,6 +11,6 @@ router.get('/', vendedorGet);
 
 router.post('/',vendedorCreate);
 
-router.delete('/:id', [validarJWT], vendedorDelete);
+router.delete('/:idVendedor', [validarJWT], vendedorDelete);
 
 module.exports = router;

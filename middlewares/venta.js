@@ -13,9 +13,15 @@ const getAllVenta = async () => {
 const createVenta = async (id_venta, cantidad, fecha_venta,precio_total) => {
 
   try {
+    const idVentaValido = id_venta !== undefined ? id_venta : null;
+    const cantidadValida = cantidad !== undefined ? cantidad : null;
+    const fechaVentaValida = fecha_venta !== undefined ? fecha_venta : null;
+    const precioTotalValido = precio_total !== undefined ? precio_total : null;
+
+    // Utilizar los valores verificados en la consulta SQL
     const [sale] = await (await conexion)
-      .execute('INSERT INTO venta (id_venta, cantidad, fecha_venta,precio_total) VALUES (?, ?, ?, ?)',
-        [id_venta, cantidad, fecha_venta,precio_total]);
+      .execute('INSERT INTO venta (id_venta, cantidad, fecha_venta, precio_total) VALUES (?, ?, ?, ?)',
+        [idVentaValido, cantidadValida, fechaVentaValida, precioTotalValido]);
     return sale;
   } catch (error) {
     console.error('Error al intentar registrar la venta:', error);

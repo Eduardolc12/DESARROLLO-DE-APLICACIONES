@@ -59,7 +59,7 @@ const estudiantesUpdate = async (req, res) => {
   try {
     const { nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password ,  tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial} = req.body;
    
-    const output = await dao.updateUser(nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password,  tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial);
+    const output = await dao.updateEstudent(nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password,  tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial);
     res.json({
       msg: "Datos del estudiante actualizados",
       matricula,
@@ -74,7 +74,7 @@ const estudiantesUpdatePass = async (req, res) => {
   const { matricula } = req.params;
   try {
     const cifrada = crypto.MD5(newpass);
-    const output = await dao.createUser(matricula, cifrada.toString());
+    const output = await dao.createEstudent(matricula, cifrada.toString());
     res.json({
       msg: "Password actualizado",
       id,
@@ -89,10 +89,9 @@ const estudiantesUpdatePass = async (req, res) => {
 const estudiantesDelete = async (req, res) => {
   const { matricula } = req.params;
   try {
-    const output = await dao.deleteUser(matricula);
+    const output = await dao.deleteEstudent(matricula);
     res.json({
       msg: "Usuario eliminado",
-      id,
       affectedRows: output.affectedRows
     });
   }

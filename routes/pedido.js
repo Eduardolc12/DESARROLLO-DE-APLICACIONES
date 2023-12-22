@@ -12,11 +12,11 @@ const router = Router();
 
 router.get('/all', pedidosGet);
 
-router.get('/:name', pedidosGetById);
+router.get('/:idPedido', pedidosGetById);
 
 router.post('/', pedidosCreate);
 
-router.put('/:id', [validarJWT], pedidosUpdate);
+router.put('/:idPedido', [validarJWT], pedidosUpdate);
 
 
 
