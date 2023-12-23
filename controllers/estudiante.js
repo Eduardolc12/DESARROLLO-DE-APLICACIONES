@@ -19,20 +19,23 @@ const estudiantesGetById = async (req, res = response) => {
   });
 }
 
-const estudiantesLogin = async (req, res = response) => {
+const estudiantesLogin = async (req, res = response) => { 
   const { correoInstitucional, password } = req.body;
-  const passcipher = crypto.MD5(password);
-  const student = await dao.getIdByCredentials(correoInstitucional, passcipher.toString());
-  if ( student== null) {
+   
+  const estudiante = await dao.getIdByCredentials(correoInstitucional, password);
+  if ( estudiante== null) {
     res.status(404).json({ msg: "verifique sus credenciales de acceso" });
   }
   try {
-    const token = await generarJWT(student);
+    const token = await generarJWT(estudiante);
     res.header('Authorization', `Bearer ${token}`);
     res.json({
-      student,
+      estudiante,
       msg: "Usuario logueado correctamente"
+
     });
+
+    console.log("peticción recibida");
   } catch (error) {
     console.log(error);
     res.status(404).json({ msg: "verifique sus credenciales de acceso" });
