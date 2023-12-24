@@ -10,10 +10,11 @@ const productoGet = async (req, res = response) => {
 }
 
 const productoGetByName= async (req, res = response) => {
-  const { name } = req.params;
-  const product = await dao.getAllProductsByName(name);
+  
+  const { nombre } = req.params;
+  const producto = await dao.getAllProductsByName(nombre);
   res.json({
-    product
+    producto
   });
 }
 

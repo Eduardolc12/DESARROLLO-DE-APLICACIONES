@@ -14,7 +14,7 @@ const getAllProductsByName = async (nombre) => {
   try {
     const [rows, fields] = await (await conexion)
       .execute('SELECT * FROM producto WHERE nombre = ?', [nombre]);
-    return rows;
+    return rows[0];
   } catch (error) {
     console.error('Error al obtener el producto:', error);
     throw error;
