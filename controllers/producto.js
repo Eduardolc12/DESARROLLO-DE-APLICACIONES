@@ -54,10 +54,21 @@ const productoUpdate = async (req, res) => {
   }
 }
 
-
+const subirImagen = async(req, res)=>{
+  const { filename } = req.file; // Acceder al nombre del archivo
+  try {
+    console.log(filename);
+    res.send({ data: 'Imagen subida' });
+  } catch (error) {
+    res.status(500).json({ msg: 'Error al subir la imagen' });
+  }
+  
+};
 module.exports = {
     productoGet,
     productoGetByName,
     productoCreate,
     productoUpdate,
+    subirImagen
+  
 };
