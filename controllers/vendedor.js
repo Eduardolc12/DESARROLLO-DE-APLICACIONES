@@ -38,9 +38,16 @@ const vendedorDelete= async (req, res) => {
   }
 }
 
+const vendedorGetProductos= async (req, res = response) => {
+  
+  const { matricula } = req.params;
+  const productos = await dao.getAllProductos(matricula);
+  res.send(productos)
+}
 
 module.exports = {
     vendedorGet,
     vendedorCreate,
     vendedorDelete,
+    vendedorGetProductos
 };

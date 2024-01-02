@@ -3,6 +3,7 @@ const {
     vendedorGet,
     vendedorCreate,
     vendedorDelete,
+    vendedorGetProductos
 } = require('../controllers/vendedor');
 const{ validarJWT } = require('../middlewares/validar-jwt');
 
@@ -11,6 +12,8 @@ router.get('/', vendedorGet);
 
 router.post('/',vendedorCreate);
 
-router.delete('/:idVendedor', [validarJWT], vendedorDelete);
+router.delete('/:idVendedor', vendedorDelete);
+
+router.get('/:matricula', vendedorGetProductos);
 
 module.exports = router;

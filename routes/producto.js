@@ -18,7 +18,7 @@ router.post('/', productoCreate);
 
 router.post('/subirImagen', imagen.single('imagenProducto'), subirImagen);
 
-router.put('/:id_producto', [validarJWT], productoUpdate);
+router.put('/:id_producto', productoUpdate);
 
 
 module.exports = router;

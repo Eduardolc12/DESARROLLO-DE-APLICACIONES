@@ -16,7 +16,7 @@ router.get('/:idPedido', pedidosGetById);
 
 router.post('/', pedidosCreate);
 
-router.put('/:idPedido', [validarJWT], pedidosUpdate);
+router.put('/:idPedido', pedidosUpdate);
 
 
 

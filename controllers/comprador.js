@@ -42,9 +42,17 @@ const compradorDelete= async (req, res) => {
   }
 }
 
+const productosGet= async (req, res = response) => {
+  
+  const { matricula } = req.params;
+  const productos = await dao.getAllProductosC(matricula);
+  res.send(productos)
+}
+
 
 module.exports = {
   compradorGet,
   compradorCreate,
   compradorDelete,
+  productosGet
 };

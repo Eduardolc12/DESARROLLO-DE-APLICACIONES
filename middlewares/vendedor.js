@@ -41,9 +41,19 @@ const deleteVendedor = async (idVendedor) => {
     }
   }
 
-
+  const getAllProductos = async (matricula) => {
+    try {
+     
+      const [rows, fields] = await (await conexion).execute('SELECT p.* FROM producto p JOIN vendedor v ON p.id_producto = v.id_producto WHERE v.matricula = ?', [matricula]);
+      return rows;
+    } catch (error) {
+      console.error('Error al obtener los productos:', error);
+      throw error;
+    }
+  }
 module.exports = { 
   getAllVendedor,
   createVendedor,
   deleteVendedor,
+  getAllProductos
  }

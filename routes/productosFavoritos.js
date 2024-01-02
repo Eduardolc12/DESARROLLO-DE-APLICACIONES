@@ -9,6 +9,6 @@ const{ validarJWT } = require('../middlewares/validar-jwt');
 const router = Router();
 router.get('/', productoFavGet);
 router.post('/', productoFavCreate);
-router.delete('/:id_producto', [validarJWT], productoFavDelete);
+router.delete('/:id_producto', productoFavDelete);
 
 module.exports = router;

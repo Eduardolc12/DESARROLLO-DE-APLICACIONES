@@ -11,6 +11,6 @@ router.get('/', valoracionGet);
 
 router.post('/', valoracionCreate);
 
-router.put('/:id_valoracion', [validarJWT], valoracionUpdate);
+router.put('/:id_valoracion', valoracionUpdate);
 
 module.exports = router;
