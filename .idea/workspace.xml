@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d54cbf50-2a43-46ff-a016-b3f82451e9fb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/estudiante.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/estudiante.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/productosFavoritos.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/productosFavoritos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +16,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;prince-edu&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="c6e9bbda-3007-4b87-ace6-7539ddfc80e4" />
+        <option name="url" value="https://github.com/Eduardolc12/DESARROLLO-DE-APLICACIONES.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -32,7 +47,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;2.0&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -55,6 +70,20 @@
       <workItem from="1701897028139" duration="149000" />
       <workItem from="1701975113174" duration="67000" />
       <workItem from="1701975761494" duration="242000" />
+      <workItem from="1703175833124" duration="755000" />
+      <workItem from="1703537238248" duration="625000" />
+      <workItem from="1703712774860" duration="707000" />
+      <workItem from="1704219740188" duration="246000" />
+      <workItem from="1704220054355" duration="2016000" />
+      <workItem from="1704222430252" duration="509000" />
+      <workItem from="1704228709743" duration="621000" />
+      <workItem from="1704304675212" duration="1169000" />
+      <workItem from="1704386954611" duration="3800000" />
+      <workItem from="1704424457213" duration="3355000" />
+      <workItem from="1704470815808" duration="716000" />
+      <workItem from="1704493787446" duration="1938000" />
+      <workItem from="1704686414517" duration="1842000" />
+      <workItem from="1704736881257" duration="1309000" />
     </task>
     <servers />
   </component>
