@@ -9,7 +9,7 @@ const {
     estudiantesDelete
 } = require('../controllers/estudiante');
 const{ validarJWT } = require('../middlewares/validar-jwt');
-
+const{imagen} =require('../middlewares/storage');
 const router = Router();
 
 router.post('/login', estudiantesLogin);
@@ -19,7 +19,7 @@ router.get('/all', estudiantesGet);
 
 router.get('/:matricula', estudiantesGetById);
 
-router.post('/', estudiantesCreate);
+router.post('/',imagen.single('fotoCredencial'),estudiantesCreate);
 
 router.put('/:matricula',estudiantesUpdate);
 
