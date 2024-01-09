@@ -12,13 +12,13 @@ const ventaGet = async (req, res = response) => {
 
 
 const ventaCreate = async (req, res = response) => {
-  const {cantidad, fecha_venta,precio_total} = req.body;
+  const {id_venta, cantidad, fecha_venta,precio_total} = req.body;
   try {
-    const sale = await dao.createVenta(cantidad, fecha_venta,precio_total);
-        const idGenerated = sale.insertId;
+    const sale = await dao.createVenta(id_venta, cantidad, fecha_venta,precio_total);
+        
     
     res.json({
-        id_venta: idGenerated
+        id_venta: id_venta
     });
   } catch (error) {
     res.status(500).json({ msg: "Error al registrar la venta" });
