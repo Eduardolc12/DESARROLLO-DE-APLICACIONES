@@ -21,9 +21,9 @@ const pedidosCreate = async (req, res = response) => {
   try {
    
     const order = await dao.createOrder(preferencias ,fecha_pedido ,precio_total ,estado ,id_venta ,matricula ,id_producto);
-    const idGenerated = order.id_pedido;
+    const idGenerated = order.idPedido;
     res.json({
-      id_pedido: idGenerated
+      idPedido: idGenerated
     });
   } catch (error) {
     res.status(500).json({ msg: "Error al crear el pedido" });
