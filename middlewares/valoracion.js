@@ -23,7 +23,7 @@ const createValoracion = async (id_valoracion,descripcion,calificacion) => {
 
     // Utilizar los valores verificados en la consulta SQL
     const [qualification] = await (await conexion)
-      .execute('INSERT INTO producto (id_valoracion, descripcion, calificacion) VALUES (?, ?, ?)',
+      .execute('INSERT INTO valoracion (id_valoracion, descripcion, calificacion) VALUES (?, ?, ?)',
         [idValoracionValido, descripcionValida, calificacionValida]);
     return qualification;
   } catch (error) {
