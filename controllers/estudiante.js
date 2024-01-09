@@ -32,7 +32,6 @@ const estudiantesLogin = async (req, res = response) => {
     res.json({
       estudiante
     });
-console.log(":"+correoInstitucional+password);
     console.log("peticción recibida");
   } catch (error) {
     console.log(error);
