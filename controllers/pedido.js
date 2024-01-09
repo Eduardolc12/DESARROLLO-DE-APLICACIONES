@@ -20,6 +20,7 @@ const pedidosCreate = async (req, res = response) => {
   const {preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto} = req.body;
   try {
    
+<<<<<<< HEAD
     const order = await dao.createOrder(preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto);
     const idGenerated = order.idPedido;
 
@@ -27,6 +28,12 @@ const pedidosCreate = async (req, res = response) => {
     res.json({
       preferencias: preferencias
 
+=======
+    const order = await dao.createOrder(preferencias ,fecha_pedido ,precio_total ,estado ,id_venta ,matricula ,id_producto);
+    const idGenerated = order.idPedido;
+    res.json({
+      idPedido: idGenerated
+>>>>>>> 1f19fbec06002b983ce4704129d72856bb82f690
     });
     
   } catch (error) {
