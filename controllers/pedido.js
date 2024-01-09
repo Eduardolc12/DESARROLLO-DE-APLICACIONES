@@ -17,14 +17,18 @@ const pedidosGetById= async (req, res = response) => {
 
 
 const pedidosCreate = async (req, res = response) => {
-  const {preferencias ,fecha_pedido ,precio_total ,estado ,id_venta ,matricula ,id_producto} = req.body;
+  const {preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto} = req.body;
   try {
    
-    const order = await dao.createOrder(preferencias ,fecha_pedido ,precio_total ,estado ,id_venta ,matricula ,id_producto);
-    const idGenerated = order.id_pedido;
+    const order = await dao.createOrder(preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto);
+    const idGenerated = order.idPedido;
+
+  
     res.json({
-      id_pedido: idGenerated
+      preferencias: preferencias
+
     });
+    
   } catch (error) {
     res.status(500).json({ msg: "Error al crear el pedido" });
   }

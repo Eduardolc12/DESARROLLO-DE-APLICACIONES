@@ -30,11 +30,9 @@ const estudiantesLogin = async (req, res = response) => {
     const token = await generarJWT(estudiante);
     res.header('Authorization', `Bearer ${token}`);
     res.json({
-      estudiante,
-      msg: "Usuario logueado correctamente"
-
+      estudiante
     });
-
+console.log(":"+correoInstitucional+password);
     console.log("peticción recibida");
   } catch (error) {
     console.log(error);

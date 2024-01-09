@@ -12,7 +12,7 @@ const ventaGet = async (req, res = response) => {
 
 
 const ventaCreate = async (req, res = response) => {
-  const {} = req.body;
+  const {cantidad, fecha_venta,precio_total} = req.body;
   try {
     const sale = await dao.createVenta(cantidad, fecha_venta,precio_total);
         const idGenerated = sale.insertId;

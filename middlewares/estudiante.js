@@ -28,7 +28,7 @@ const getIdByCredentials = async (correoInstitucional, password) => {
     const [rows, fields] = await (await conexion)
       .execute('SELECT matricula, tipoVendedor, tipoComprador FROM estudiante WHERE  correoInstitucional= ? AND password= ?', [correoInstitucional, password]);
     if (rows.length > 0) {
-      return rows;
+      return rows[0];
     } else {
       return null;
     }
