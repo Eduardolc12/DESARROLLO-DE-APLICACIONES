@@ -3,7 +3,7 @@ const {
     valoracionGet,
     valoracionCreate,
     valoracionUpdate,
-} = require('../controllers/valoracion.js');
+} = require('../controllers/valoracion');
 const{ validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();

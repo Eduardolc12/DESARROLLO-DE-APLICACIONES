@@ -23,7 +23,7 @@ const createValoracion = async (id_valoracion,descripcion,calificacion) => {
 
     // Utilizar los valores verificados en la consulta SQL
     const [qualification] = await (await conexion)
-      .execute('INSERT INTO producto (id_valoracion, descripcion, calificacion) VALUES (?, ?, ?)',
+      .execute('INSERT INTO valoracion (id_valoracion, descripcion, calificacion) VALUES (?, ?, ?)',
         [idValoracionValido, descripcionValida, calificacionValida]);
     return qualification;
   } catch (error) {
@@ -40,8 +40,8 @@ const updateValoracion = async (id_valoracion,descripcion,calificacion) => {
 
     // Utilizar los valores verificados en la consulta SQL
     const [qualification] = await (await conexion)
-      .execute('UPDATE producto SET descripcion = ?, calificacion = ? WHERE id_valoracion = ?',
-        [descripcionValida, calificacionValida, idValoracionValido]);
+      .execute('UPDATE  valoracion SET descripcion = ?, calificacion = ? WHERE id_valoracion = ?',
+        [idValoracionValido, descripcionValida, calificacionValida]);
     return qualification;
   } catch (error) {
     console.error('Error al intentar actualizar valoración:', error);

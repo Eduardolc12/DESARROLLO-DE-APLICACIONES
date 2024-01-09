@@ -67,7 +67,7 @@ const updateProduct = async (id_producto,nombre,descripcion,cantidadDisponible,h
     // Utilizar los valores verificados en la consulta SQL
     const [producto] = await (await conexion)
       .execute('UPDATE producto SET nombre= ?, descripcion= ?, cantidadDisponible= ?, horaVentaInicial= ?, horaVentaFinal= ?, puntoEncuentro= ?, precio= ?, estado= ?, foto= ? WHERE id_producto = ?',
-        [nombreValido, descripcionValida, cantidadDisponibleValida, horaVentaInicialValida, horaVentaFinalValida, puntoEncuentroValido, precioValido, estadoValido, fotoValida, idProductoValido]);
+        [idProductoValido,nombreValido, descripcionValida, cantidadDisponibleValida, horaVentaInicialValida, horaVentaFinalValida, puntoEncuentroValido, precioValido, estadoValido, fotoValida]);
      return producto;
   } catch (error) {
     console.error('Error al intentar actualizar el producto:', error);

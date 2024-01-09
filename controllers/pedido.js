@@ -8,8 +8,8 @@ const pedidosGet = async (req, res = response) => {
 }
 
 const pedidosGetById= async (req, res = response) => {
-  const { id_pedido} = req.params;
-  const order = await dao.getAllOrderById(id_pedido);
+  const { idPedido} = req.body;
+  const order = await dao.getAllOrderById(idPedido);
   res.json({
     order
   });
@@ -31,13 +31,13 @@ const pedidosCreate = async (req, res = response) => {
 }
 
 const pedidosUpdate = async (req, res) => {
-  const { id_pedido } = req.params;
+  const { idPedido } = req.params;
   try {
-    const { preferencias ,fecha_pedido ,precio_total ,estado ,id_venta ,matricula ,id_producto} = req.body;
-    const output = await dao.updateOrder(preferencias ,fecha_pedido ,precio_total ,estado ,id_venta ,matricula ,id_producto);
+    const { preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto} = req.body;
+    const output = await dao.updateOrder(preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto);
     res.json({
       msg: "Datos del pedido actualizados",
-      id_pedido,
+      idPedido,
       affectedRows: output.affectedRows
     });
   }

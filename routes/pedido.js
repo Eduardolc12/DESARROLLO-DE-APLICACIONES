@@ -12,7 +12,7 @@ const router = Router();
 
 router.get('/all', pedidosGet);
 
-router.get('/:idPedido', pedidosGetById);
+router.get('/', pedidosGetById);
 
 router.post('/', pedidosCreate);
 

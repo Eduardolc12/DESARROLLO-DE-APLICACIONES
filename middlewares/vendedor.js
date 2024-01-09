@@ -10,7 +10,7 @@ const getAllVendedor = async () => {
   }
 }
 
-const createVendedor = async () => {
+const createVendedor = async (idVendedor,matricula,id_producto) => {
 
   try {
     const idVendedorValido = idVendedor !== undefined ? idVendedor : null;
