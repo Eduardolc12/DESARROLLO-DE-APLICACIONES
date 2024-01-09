@@ -44,7 +44,7 @@ const estudiantesLogin = async (req, res = response) => {
 }
 
 const estudiantesCreate = async (req, res = response) => {
-  const { matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password,  tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial} = req.body;
+  var { matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password,  tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial} = req.body;
   try {
     const estudiante = await dao.createEstudent(matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial );
     const idGenerated = matricula;
@@ -52,6 +52,7 @@ const estudiantesCreate = async (req, res = response) => {
       matricula: idGenerated
     });
   } catch (error) {
+    console.log(fotoCredencial);
     res.status(500).json({ msg: "Error al crear el cuenta" });
     
   }

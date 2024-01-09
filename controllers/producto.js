@@ -55,7 +55,7 @@ const productoUpdate = async (req, res) => {
 }
 
 const subirImagen = async(req, res)=>{
-  const { filename } = req.file; // Acceder al nombre del archivo
+  const {filename} = req.file; // Acceder al nombre del archivo
   try {
     console.log(filename);
     res.send({ data: 'Imagen subida' });
