@@ -25,13 +25,12 @@ const getAllEstudentById = async (matricula) => {
 const getIdByCredentials = async (correoInstitucional, password) => {
   try {
 
+    const correoInstitucionalValido = correoInstitucional !== undefined ? correoInstitucional : null;
+    const passwordValida = password !== undefined ? password : null;
     const [rows, fields] = await (await conexion)
-      .execute('SELECT matricula, tipoVendedor, tipoComprador FROM estudiante WHERE  correoInstitucional= ? AND password= ?', [correoInstitucional, password]);
-    if (rows.length > 0) {
+      .execute('SELECT * FROM estudiante WHERE  correoInstitucional= ? AND password= ?', [correoInstitucionalValido,passwordValida ]);
       return rows[0];
-    } else {
-      return null;
-    }
+   
   } catch (error) {
     console.error('Error al obtener el estudiante:', error);
     throw error;

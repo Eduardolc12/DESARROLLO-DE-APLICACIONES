@@ -26,13 +26,14 @@ const estudiantesLogin = async (req, res = response) => {
   if ( estudiante== null) {
     res.status(404).json({ msg: "verifique sus credenciales de acceso" });
   }
+ 
   try {
     const token = await generarJWT(estudiante);
     res.header('Authorization', `Bearer ${token}`);
     res.json({
       estudiante
     });
-    console.log("peticción recibida");
+    console.log("peticción recibida"+correoInstitucional+password);
   } catch (error) {
     console.log(error);
     res.status(404).json({ msg: "verifique sus credenciales de acceso" });
