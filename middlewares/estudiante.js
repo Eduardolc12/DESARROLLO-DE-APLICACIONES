@@ -76,7 +76,7 @@ const updateEstudent = async (matricula, nombre, apellidoPaterno, apellidoMatern
     const fotoCredencialValida = fotoCredencial !== undefined ? fotoCredencial : null;
     const [estudiante] = await (await conexion)
       .execute('UPDATE estudiante SET nombre= ? , apellidoPaterno= ?, apellidoMaterno= ?, correoInstitucional= ?, password= ?,  tipoVendedor= ?,tipoComprador=?,fotoPerfil= ?,fotoCredencial= ? WHERE matricula = ?',
-      [matriculaValida, nombreValido, apellidoPaternoValido, apellidoMaternoValido, correoInstitucionalValido, passwordValida, tipoVendedorValido, tipoCompradorValido, fotoPerfilValida, fotoCredencialValida]);
+      [ nombreValido, apellidoPaternoValido, apellidoMaternoValido, correoInstitucionalValido, passwordValida, tipoVendedorValido, tipoCompradorValido, fotoPerfilValida, fotoCredencialValida,matriculaValida]);
       return estudiante;
   
   } catch (error) {

@@ -20,15 +20,14 @@ const productoGetByName= async (req, res = response) => {
 
 
 const productoCreate = async (req, res = response) => {
-  const {id_producto,nombre,descripcion,cantidadDisponible,
-    horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto} = req.body;
+  const {nombre,descripcion,cantidadDisponible,horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto} = req.body;
   try {
-    const product = await dao.createProduct(id_producto,nombre,descripcion,cantidadDisponible,
-      horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto);
-        const idGenerated = product.insertId;
-    
+   
+    const product = await dao.createProduct(nombre,descripcion,cantidadDisponible,horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto);
+       
+    const   idGeneraded = product.insertId;
     res.json({
-      id_producto: idGenerated
+      id_producto:  idGeneraded
     });
   } catch (error) {
     res.status(500).json({ msg: "Error al crear el producto" });
@@ -36,13 +35,14 @@ const productoCreate = async (req, res = response) => {
 }
 
 const productoUpdate = async (req, res) => {
-  const { id_producto} = req.params;
+  const {id_producto} = req.params;
   try {
     const { nombre,descripcion,cantidadDisponible,
       horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto} = req.body;
    
-    const output = await dao.updateProduct(nombre,descripcion,cantidadDisponible,
+    const output = await dao.updateProduct(id_producto,nombre,descripcion,cantidadDisponible,
       horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto);
+      console.log("solicitud recibida");
     res.json({
       msg: "Datos del producto actualizados",
       id_producto,
@@ -64,11 +64,26 @@ const subirImagen = async(req, res)=>{
   }
   
 };
+
+const productoDelete = async (req, res) => {
+  const { id_producto } = req.params;
+  try {
+    const output = await dao.deleteProduct(id_producto);
+    res.json({
+      msg: "Producto eliminado",
+      affectedRows: output.affectedRows
+    });
+  }
+  catch (error) {
+    res.status(500).json({ msg: "Error al eliminar el producto" });
+  }
+}
 module.exports = {
     productoGet,
     productoGetByName,
     productoCreate,
     productoUpdate,
-    subirImagen
+    subirImagen,
+    productoDelete
   
 };

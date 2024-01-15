@@ -33,7 +33,7 @@ const estudiantesLogin = async (req, res = response) => {
     res.json({
       estudiante
     });
-    console.log("peticción recibida"+correoInstitucional+password);
+  
   } catch (error) {
     console.log(error);
     res.status(404).json({ msg: "verifique sus credenciales de acceso" });

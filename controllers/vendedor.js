@@ -9,14 +9,15 @@ const vendedorGet = async (req, res = response) => {
 
 
 const vendedorCreate = async (req, res = response) => {
-  const {idVendedor,matricula,id_producto} = req.body;
+  const {matricula,id_producto} = req.body;
   try {
-    const salesPerson = await dao.createVendedor(idVendedor,matricula,id_producto);
-        const idGenerated = salesPerson.insertId;
+  
+    const salesPerson = await dao.createVendedor(matricula,id_producto);
+    const  idGeneraded= salesPerson.insertId;
     
     res.json({
         msg: "creación exitosa",
-      idVendedor: idGenerated
+      idVendedor:  idGeneraded
     });
   } catch (error) {
     res.status(500).json({ msg: "Error al agregar vendedor" });

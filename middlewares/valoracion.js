@@ -41,7 +41,7 @@ const updateValoracion = async (id_valoracion,descripcion,calificacion) => {
     // Utilizar los valores verificados en la consulta SQL
     const [qualification] = await (await conexion)
       .execute('UPDATE  valoracion SET descripcion = ?, calificacion = ? WHERE id_valoracion = ?',
-        [idValoracionValido, descripcionValida, calificacionValida]);
+        [ descripcionValida, calificacionValida,idValoracionValido]);
     return qualification;
   } catch (error) {
     console.error('Error al intentar actualizar valoración:', error);

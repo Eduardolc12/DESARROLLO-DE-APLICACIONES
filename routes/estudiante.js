@@ -14,7 +14,6 @@ const router = Router();
 
 router.post('/login', estudiantesLogin);
 
-
 router.get('/all', estudiantesGet);
 
 router.get('/:matricula', estudiantesGetById);

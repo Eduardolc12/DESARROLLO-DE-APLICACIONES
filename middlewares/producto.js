@@ -23,12 +23,12 @@ const getAllProductsByName = async (nombre) => {
 
 
 
-const createProduct = async (id_producto,nombre,descripcion,cantidadDisponible,
+const createProduct = async ( nombre,descripcion,cantidadDisponible,
   horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto) => {
 
   try {
 
-    const idProductoValido = id_producto !== undefined ? id_producto : null;
+  
     const nombreValido = nombre !== undefined ? nombre : null;
     const descripcionValida = descripcion !== undefined ? descripcion : null;
     const cantidadDisponibleValida = cantidadDisponible !== undefined ? cantidadDisponible : null;
@@ -41,8 +41,8 @@ const createProduct = async (id_producto,nombre,descripcion,cantidadDisponible,
 
     // Utilizar los valores verificados en la consulta SQL
     const [producto] = await (await conexion)
-      .execute('INSERT INTO producto (id_producto, nombre, descripcion, cantidadDisponible, horaVentaInicial, horaVentaFinal, puntoEncuentro, precio, estado, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [idProductoValido, nombreValido, descripcionValida, cantidadDisponibleValida, horaVentaInicialValida, horaVentaFinalValida, puntoEncuentroValido, precioValido, estadoValido, fotoValida]);
+      .execute('INSERT INTO producto ( nombre, descripcion, cantidadDisponible, horaVentaInicial, horaVentaFinal, puntoEncuentro, precio, estado, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [ nombreValido, descripcionValida, cantidadDisponibleValida, horaVentaInicialValida, horaVentaFinalValida, puntoEncuentroValido, precioValido, estadoValido, fotoValida]);
    
      return producto;
   } catch (error) {
@@ -67,18 +67,34 @@ const updateProduct = async (id_producto,nombre,descripcion,cantidadDisponible,h
     // Utilizar los valores verificados en la consulta SQL
     const [producto] = await (await conexion)
       .execute('UPDATE producto SET nombre= ?, descripcion= ?, cantidadDisponible= ?, horaVentaInicial= ?, horaVentaFinal= ?, puntoEncuentro= ?, precio= ?, estado= ?, foto= ? WHERE id_producto = ?',
-        [idProductoValido,nombreValido, descripcionValida, cantidadDisponibleValida, horaVentaInicialValida, horaVentaFinalValida, puntoEncuentroValido, precioValido, estadoValido, fotoValida]);
-     return producto;
+        [nombreValido, descripcionValida, cantidadDisponibleValida, horaVentaInicialValida, horaVentaFinalValida, puntoEncuentroValido, precioValido, estadoValido, fotoValida, idProductoValido]);
+       
+        return producto;
+    
+      
+     
   } catch (error) {
     console.error('Error al intentar actualizar el producto:', error);
     throw error;
   }
 }
 
+const deleteProduct = async (id_producto) => {
+  try {
+    const [producto] = await (await conexion)
+      .execute('DELETE FROM producto WHERE id_producto = ?',
+        [id_producto]);
+    return producto;
+  } catch (error) {
+    console.error('Error al intentar eliminar cuenta:', error);
+    throw error;
+  }
+}
 
 module.exports = { 
   getAllProducts,
   getAllProductsByName,
   createProduct,
   updateProduct,
+  deleteProduct
  }
