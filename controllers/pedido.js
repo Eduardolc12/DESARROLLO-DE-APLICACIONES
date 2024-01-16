@@ -15,6 +15,18 @@ const pedidosGetById= async (req, res = response) => {
   });
 }
 
+const pedidosVendedor = async (req, res) => {
+  const { matricula } = req.params;
+  try {
+    const orders = await dao.getAllOrderVendedor(matricula);
+    res.json({
+      orders
+    });
+  }
+  catch (error) {
+    res.status(500).json({ msg: "Error al actualizar el pedido" });
+  }
+}
 
 const pedidosCreate = async (req, res = response) => {
   const {preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto} = req.body;
@@ -50,6 +62,7 @@ const pedidosUpdate = async (req, res) => {
 module.exports = {
   pedidosGet,
     pedidosGetById,
+    pedidosVendedor,
     pedidosCreate,
     pedidosUpdate
   

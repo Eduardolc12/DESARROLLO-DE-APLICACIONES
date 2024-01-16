@@ -2,6 +2,7 @@ const {Router} = require('express');
 const {
     pedidosGet,
     pedidosGetById,
+    pedidosVendedor,
     pedidosCreate,
     pedidosUpdate
     
@@ -13,6 +14,8 @@ const router = Router();
 router.get('/all', pedidosGet);
 
 router.get('/', pedidosGetById);
+
+router.get('/:matricula',pedidosVendedor);
 
 router.post('/', pedidosCreate);
 

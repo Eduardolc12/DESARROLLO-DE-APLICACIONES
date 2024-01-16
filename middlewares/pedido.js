@@ -22,6 +22,19 @@ const getAllOrderById = async (idPedido) => {
   }
 }
 
+const getAllOrderVendedor = async (matricula) => {
+  try {
+    const [rows, fields] = await (await conexion)
+      .execute('SELECT p.* FROM pedido p JOIN producto pr ON p.id_producto = pr.id_producto JOIN vendedor v ON pr.id_producto = v.id_producto JOIN estudiante e ON v.matricula = e.matricula WHERE e.matricula = ?', 
+      [matricula]);
+    return rows;
+
+  } catch (error) {
+    console.error('Error al obtener el pedido:', error);
+    throw error;
+  }
+}
+
 
 const createOrder = async (preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto) => {
     
@@ -72,6 +85,7 @@ const updateOrder = async (id_pedido ,preferencias ,fecha_pedido ,precio_total ,
 module.exports = { 
     getAllOrder,
     getAllOrderById, 
+    getAllOrderVendedor,
     createOrder,
     updateOrder
  }

@@ -11,14 +11,21 @@ const productoGet = async (req, res = response) => {
 
 const productoGetByName= async (req, res = response) => {
   
-  const { nombre } = req.params;
-  const producto = await dao.getAllProductsByName(nombre);
+  const { nombre,matricula } = req.params;
+  const producto = await dao.getAllProductsByName(nombre,matricula);
   res.json({
     producto
   });
 }
 
-
+const productoByName= async (req, res = response) => {
+  
+  const { nombre } = req.params;
+  const producto = await dao.getProductByName(nombre);
+  res.json({
+    producto
+  });
+}
 const productoCreate = async (req, res = response) => {
   const {nombre,descripcion,cantidadDisponible,horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto} = req.body;
   try {
@@ -81,6 +88,7 @@ const productoDelete = async (req, res) => {
 module.exports = {
     productoGet,
     productoGetByName,
+    productoByName,
     productoCreate,
     productoUpdate,
     subirImagen,
