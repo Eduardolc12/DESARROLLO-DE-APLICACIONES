@@ -18,10 +18,8 @@ const pedidosGetById= async (req, res = response) => {
 const pedidosVendedor = async (req, res) => {
   const { matricula } = req.params;
   try {
-    const orders = await dao.getAllOrderVendedor(matricula);
-    res.json({
-      orders
-    });
+    const pedido = await dao.getAllOrderVendedor(matricula);
+    res.send(pedido)
   }
   catch (error) {
     res.status(500).json({ msg: "Error al actualizar el pedido" });
@@ -47,7 +45,8 @@ const pedidosUpdate = async (req, res) => {
   const { idPedido } = req.params;
   try {
     const { preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto} = req.body;
-    const output = await dao.updateOrder(preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto);
+    const output = await dao.updateOrder(idPedido, preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto);
+  
     res.json({
       msg: "Datos del pedido actualizados",
       idPedido,

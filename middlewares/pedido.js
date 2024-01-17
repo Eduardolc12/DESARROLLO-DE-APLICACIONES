@@ -59,9 +59,9 @@ const createOrder = async (preferencias ,fechaPedido ,precioTotal ,estado ,id_ve
   }
 }
 
-const updateOrder = async (id_pedido ,preferencias ,fecha_pedido ,precio_total ,estado ,id_venta ,matricula ,id_producto) => {
+const updateOrder = async (idPedido ,preferencias ,fecha_pedido ,precio_total ,estado ,id_venta ,matricula ,id_producto) => {
   try {
-    const idPedidoValido = id_pedido !== undefined ? id_pedido : null;
+    const idPedidoValido = idPedido !== undefined ? idPedido : null;
     const preferenciasValidas = preferencias !== undefined ? preferencias : null;
     const fechaPedidoValida = fecha_pedido !== undefined ? fecha_pedido : null;
     const precioTotalValido = precio_total !== undefined ? precio_total : null;
@@ -73,7 +73,7 @@ const updateOrder = async (id_pedido ,preferencias ,fecha_pedido ,precio_total ,
     // Utilizar los valores verificados en la consulta SQL
     const [output] = await (await conexion)
       .execute('UPDATE pedido SET preferencias = ?, fechaPedido = ?, precioTotal = ?, estado = ?, id_venta = ?, matricula = ?, id_producto = ? WHERE idPedido = ?',
-        [idPedidoValido, preferenciasValidas, fechaPedidoValida, precioTotalValido, estadoValido, idVentaValido, matriculaValida, idProductoValido]);
+        [ preferenciasValidas, fechaPedidoValida, precioTotalValido, estadoValido, idVentaValido, matriculaValida, idProductoValido,idPedidoValido]);
      return output;
   } catch (error) {
     console.error('Error al intentar actualizar el pedido:', error);
