@@ -61,7 +61,7 @@ const estudiantesUpdate = async (req, res) => {
   try {
     const { nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password ,  tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial} = req.body;
    
-    const output = await dao.updateEstudent(nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password,  tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial);
+    const output = await dao.updateEstudent(matricula,nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password,  tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial);
     res.json({
       msg: "Datos del estudiante actualizados",
       matricula,

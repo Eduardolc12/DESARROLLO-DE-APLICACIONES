@@ -28,7 +28,7 @@ const getIdByCredentials = async (correoInstitucional, password) => {
     const correoInstitucionalValido = correoInstitucional !== undefined ? correoInstitucional : null;
     const passwordValida = password !== undefined ? password : null;
     const [rows, fields] = await (await conexion)
-      .execute('SELECT * FROM estudiante WHERE  correoInstitucional= ? AND password= ?', [correoInstitucionalValido,passwordValida ]);
+      .execute('SELECT matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password , tipoVendedor, tipoComprador FROM estudiante WHERE  correoInstitucional= ? AND password= ?', [correoInstitucionalValido,passwordValida ]);
       return rows[0];
    
   } catch (error) {
