@@ -12,9 +12,9 @@ const valoracionGet = async (req, res = response) => {
 
 const  valoracionCreate= async (req, res = response) => {
     
-  const {id_valoracion,descripcion,calificacion} = req.body;
+  const {descripcion,calificacion,id_producto} = req.body;
   try {
-    const qualification = await dao.createValoracion(id_valoracion,descripcion,calificacion);
+    const qualification = await dao.createValoracion(descripcion,calificacion,id_producto);
         const idGenerated = qualification.insertId;
     
     res.json({

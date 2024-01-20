@@ -12,7 +12,7 @@ const productoFavGet = async (req, res = response) => {
 
 const productoById = async (req, res = response) => {
   const { id_producto} =req.params;
-  console.log(""+id_producto);
+
   const favoritos = await dao.getAllFav(id_producto);
   res.send(favoritos)
  
