@@ -36,7 +36,7 @@ const getAllOrderVendedor = async (matricula) => {
 }
 
 
-const createOrder = async (preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto) => {
+const createOrder = async (preferencias ,fechaPedido ,precioTotal ,estado ,matricula ,id_producto) => {
     
   try {
    
@@ -44,14 +44,14 @@ const createOrder = async (preferencias ,fechaPedido ,precioTotal ,estado ,id_ve
     const fechaPedidoValida = fechaPedido !== undefined ? fechaPedido : null;
     const precioTotalValido = precioTotal !== undefined ? precioTotal : null;
     const estadoValido = estado !== undefined ? estado : null;
-    const idVentaValido = id_venta !== undefined ? id_venta : null;
+   
     const matriculaValida = matricula !== undefined ? matricula : null;
     const idProductoValido = id_producto !== undefined ? id_producto : null;
 
     // Utilizar los valores verificados en la consulta SQL
     const [pedido] = await (await conexion)
-      .execute('INSERT INTO pedido (preferencias, fechaPedido, precioTotal, estado, id_venta, matricula, id_producto) VALUES ( ?, ?, ?, ?, ?, ?, ?)',
-        [ preferenciasValidas, fechaPedidoValida, precioTotalValido, estadoValido, idVentaValido, matriculaValida, idProductoValido]);
+      .execute('INSERT INTO pedido (preferencias, fechaPedido, precioTotal, estado, matricula, id_producto) VALUES ( ?, ?, ?, ?, ?, ?)',
+        [ preferenciasValidas, fechaPedidoValida, precioTotalValido, estadoValido, matriculaValida, idProductoValido]);
      return pedido;
   } catch (error) {
     console.error('Error al intentar registrar pedido:', error);

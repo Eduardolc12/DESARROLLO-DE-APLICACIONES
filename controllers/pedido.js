@@ -27,11 +27,11 @@ const pedidosVendedor = async (req, res) => {
 }
 
 const pedidosCreate = async (req, res = response) => {
-  const {preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto} = req.body;
+  const {preferencias ,fechaPedido ,precioTotal ,estado ,matricula ,id_producto} = req.body;
   try {
    
-    const order = await dao.createOrder(preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto);
-    const idGenerated = order.idPedido;
+    const order = await dao.createOrder(preferencias ,fechaPedido ,precioTotal ,estado ,matricula ,id_producto);
+    const idGenerated = order.insertId;
     res.json({
       idPedido: idGenerated
     });
