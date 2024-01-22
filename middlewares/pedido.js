@@ -59,21 +59,20 @@ const createOrder = async (preferencias ,fechaPedido ,precioTotal ,estado ,matri
   }
 }
 
-const updateOrder = async (idPedido ,preferencias ,fecha_pedido ,precio_total ,estado ,id_venta ,matricula ,id_producto) => {
+const updateOrder = async (idPedido ,preferencias ,fecha_pedido ,precio_total ,estado ,matricula ,id_producto) => {
   try {
     const idPedidoValido = idPedido !== undefined ? idPedido : null;
     const preferenciasValidas = preferencias !== undefined ? preferencias : null;
     const fechaPedidoValida = fecha_pedido !== undefined ? fecha_pedido : null;
     const precioTotalValido = precio_total !== undefined ? precio_total : null;
     const estadoValido = estado !== undefined ? estado : null;
-    const idVentaValido = id_venta !== undefined ? id_venta : null;
     const matriculaValida = matricula !== undefined ? matricula : null;
     const idProductoValido = id_producto !== undefined ? id_producto : null;
 
     // Utilizar los valores verificados en la consulta SQL
     const [output] = await (await conexion)
-      .execute('UPDATE pedido SET preferencias = ?, fechaPedido = ?, precioTotal = ?, estado = ?, id_venta = ?, matricula = ?, id_producto = ? WHERE idPedido = ?',
-        [ preferenciasValidas, fechaPedidoValida, precioTotalValido, estadoValido, idVentaValido, matriculaValida, idProductoValido,idPedidoValido]);
+      .execute('UPDATE pedido SET preferencias = ?, fechaPedido = ?, precioTotal = ?, estado = ?, matricula = ?, id_producto = ? WHERE idPedido = ?',
+        [ preferenciasValidas, fechaPedidoValida, precioTotalValido, estadoValido, matriculaValida, idProductoValido,idPedidoValido]);
      return output;
   } catch (error) {
     console.error('Error al intentar actualizar el pedido:', error);

@@ -44,8 +44,8 @@ const pedidosCreate = async (req, res = response) => {
 const pedidosUpdate = async (req, res) => {
   const { idPedido } = req.params;
   try {
-    const { preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto} = req.body;
-    const output = await dao.updateOrder(idPedido, preferencias ,fechaPedido ,precioTotal ,estado ,id_venta ,matricula ,id_producto);
+    const { preferencias ,fechaPedido ,precioTotal ,estado ,matricula ,id_producto} = req.body;
+    const output = await dao.updateOrder(idPedido, preferencias ,fechaPedido ,precioTotal ,estado  ,matricula ,id_producto);
   
     res.json({
       msg: "Datos del pedido actualizados",
