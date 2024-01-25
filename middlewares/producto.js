@@ -32,6 +32,17 @@ const getProductByName = async (nombre) => {
   }
 }
 
+const getProductById = async (id_producto) => {
+  try {
+   
+    const [rows, fields] = await (await conexion)
+    .execute('SELECT * FROM producto WHERE id_producto = ?',[id_producto]);
+      return rows[0];
+  } catch (error) {
+    console.error('Error al obtener el producto:', error);
+    throw error;
+  }
+}
 
 const createProduct = async ( nombre,descripcion,cantidadDisponible,
   horaVentaInicial,horaVentaFinal,puntoEncuentro,precio,estado,foto) => {
@@ -104,6 +115,7 @@ const deleteProduct = async (id_producto) => {
 module.exports = { 
   getAllProducts,
   getAllProductsByName,
+  getProductById,
   getProductByName,
   createProduct,
   updateProduct,

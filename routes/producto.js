@@ -3,6 +3,7 @@ const {
     productoGet,
     productoGetByName,
     productoByName,
+    productoById,
     productoCreate,
     productoUpdate,
     subirImagen,
@@ -17,6 +18,8 @@ router.get('/', productoGet);
 router.get('/:nombre,:matricula', productoGetByName);
 
 router.get('/:nombre', productoByName);
+
+router.get('/id/:id_producto', productoById);
 
 router.post('/', productoCreate);
 

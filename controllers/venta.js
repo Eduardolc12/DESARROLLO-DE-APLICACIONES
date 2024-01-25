@@ -5,6 +5,15 @@ const dao = require('../middlewares/venta');
 
 const ventaGet = async (req, res = response) => {
   const ventas = await dao.getAllVenta();
+  console.log("solicitud recibida");
+  res.send(ventas)
+ 
+}
+
+const ventaGetMatricula = async (req, res = response) => {
+  const { matricula} = req.params;
+  const ventas = await dao.getAllVentaMatricula(matricula);
+  console.log("solicitud recibida");
   res.send(ventas)
  
 }
@@ -12,13 +21,13 @@ const ventaGet = async (req, res = response) => {
 
 
 const ventaCreate = async (req, res = response) => {
-  const {id_venta, cantidad, fecha_venta,precio_total} = req.body;
+  const { cantidad, fecha_venta,precio_total,idPedido} = req.body;
   try {
-    const sale = await dao.createVenta(id_venta, cantidad, fecha_venta,precio_total);
-        
+    const sale = await dao.createVenta(cantidad, fecha_venta,precio_total,idPedido);
+    const  idGeneraded= sale.insertId;
     
     res.json({
-        id_venta: id_venta
+        id_venta: idGeneraded
     });
   } catch (error) {
     res.status(500).json({ msg: "Error al registrar la venta" });
@@ -29,5 +38,6 @@ const ventaCreate = async (req, res = response) => {
 
 module.exports = {
     ventaGet,
+    ventaGetMatricula,
     ventaCreate,
 };
