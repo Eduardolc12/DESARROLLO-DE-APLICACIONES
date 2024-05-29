@@ -19,6 +19,7 @@ router.get('/all', estudiantesGet);
 router.get('/:matricula', estudiantesGetById);
 
 router.post('/',imagen.single('fotoCredencial'),estudiantesCreate);
+router.post('/loginU',[validarJWT],estudianteLogin);
 
 router.put('/:matricula',estudiantesUpdate);
 
