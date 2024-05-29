@@ -3,6 +3,7 @@ const {
     estudiantesGet,
     estudiantesGetById,
     estudiantesLogin,
+    estudianteLogin,
     estudiantesCreate,
     estudiantesUpdate,
     estudiantesUpdatePass,
@@ -12,6 +13,8 @@ const{ validarJWT } = require('../middlewares/validar-jwt');
 const{imagen} =require('../middlewares/storage');
 const router = Router();
 
+router.post('/loginU',[validarJWT],estudianteLogin);
+
 router.post('/login', estudiantesLogin);
 
 router.get('/all', estudiantesGet);
@@ -19,7 +22,7 @@ router.get('/all', estudiantesGet);
 router.get('/:matricula', estudiantesGetById);
 
 router.post('/',imagen.single('fotoCredencial'),estudiantesCreate);
-router.post('/loginU',[validarJWT],estudianteLogin);
+
 
 router.put('/:matricula',estudiantesUpdate);
 
