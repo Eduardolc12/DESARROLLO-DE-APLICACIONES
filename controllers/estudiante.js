@@ -29,9 +29,10 @@ const estudiantesLogin = async (req, res = response) => {
  
   try {
     const token = await generarJWT(estudiante);
-    res.header('Authorization', `Bearer ${token}`);
+  
     res.json({
-      estudiante
+      estudiante,
+      token: `Bearer ${token}`
     });
   
   } catch (error) {
