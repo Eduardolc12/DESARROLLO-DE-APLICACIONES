@@ -3,7 +3,6 @@ const {
     estudiantesGet,
     estudiantesGetById,
     estudiantesLogin,
-    estudianteLogin,
     estudiantesCreate,
     estudiantesUpdate,
     estudiantesUpdatePass,
@@ -12,8 +11,6 @@ const {
 const{ validarJWT } = require('../middlewares/validar-jwt');
 const{imagen} =require('../middlewares/storage');
 const router = Router();
-
-router.post('/loginU',[validarJWT],estudianteLogin);
 
 router.post('/login', estudiantesLogin);
 
