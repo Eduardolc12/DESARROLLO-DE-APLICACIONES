@@ -1,6 +1,8 @@
 const conexion = require('../config/conexion');
+const bcrypt = require('bcrypt');
+const pepper = process.env.PEPPER;
 
-const getAllEstudent = async () => {
+const getAllStudents = async () => {
   try {
     const [rows, fields] = await (await conexion).execute('SELECT * FROM estudiante');
     return rows;
@@ -10,7 +12,7 @@ const getAllEstudent = async () => {
   }
 }
 
-const getAllEstudentById = async (matricula) => {
+const getAllStudentsById = async (matricula) => {
   try{
     const [rows, fields] = await (await conexion)
     
@@ -24,31 +26,48 @@ const getAllEstudentById = async (matricula) => {
 
 const getIdByCredentials = async (correoInstitucional, password) => {
   try {
-
     const correoInstitucionalValido = correoInstitucional !== undefined ? correoInstitucional : null;
     const passwordValida = password !== undefined ? password : null;
     const [rows, fields] = await (await conexion)
-      .execute('SELECT matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password , tipoVendedor, tipoComprador FROM estudiante WHERE  correoInstitucional= ? AND password= ?', [correoInstitucionalValido,passwordValida ]);
-      return rows[0];
-   
+      .execute('SELECT matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, tipoVendedor, tipoComprador FROM estudiante WHERE  correoInstitucional= ?', [correoInstitucionalValido]);
+    
+    if (rows.length > 0) {
+      const user = rows[0];
+      if (user && user.password) { 
+        const hashedPassword = user.password;
+
+        const isPasswordValid = await bcrypt.compare(pepper + passwordValida, hashedPassword);
+        if (isPasswordValid) {
+          return user;
+        } else {
+          return null;
+        }
+      } else {
+        return null; 
+      }
+    } else {
+      return null;
+    }
   } catch (error) {
     console.error('Error al obtener el estudiante:', error);
     throw error;
   }
-}
+};
 
-const createEstudent = async (matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial) => {
+
+const createStudent = async (matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password, tipoVendedor,tipoComprador,fotoPerfil,fotoCredencial) => {
   try {
     const matriculaValida = matricula !== undefined ? matricula : null;
     const nombreValido = nombre !== undefined ? nombre : null;
     const apellidoPaternoValido = apellidoPaterno !== undefined ? apellidoPaterno : null;
     const apellidoMaternoValido = apellidoMaterno !== undefined ? apellidoMaterno : null;
     const correoInstitucionalValido = correoInstitucional !== undefined ? correoInstitucional : null;
-    const passwordValida = password !== undefined ? password : null;
     const tipoVendedorValido = tipoVendedor !== undefined ? tipoVendedor : null;
     const tipoCompradorValido = tipoComprador !== undefined ? tipoComprador : null;
     const fotoPerfilValida = fotoPerfil !== undefined ? fotoPerfil : null;
     const fotoCredencialValida = fotoCredencial !== undefined ? fotoCredencial : null;
+
+    const passwordValida = bcrypt.hashSync(pepper + password, 10);
 
     // Utilizar los valores verificados en la consulta SQL
     const [estudiante] = await (await conexion)
@@ -62,18 +81,20 @@ const createEstudent = async (matricula, nombre, apellidoPaterno, apellidoMatern
   }
 }
 
-const updateEstudent = async (matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password,tipoVendedor,tipoComprador, fotoPerfil,fotoCredencial) => {
+const updateStudent = async (matricula, nombre, apellidoPaterno, apellidoMaterno, correoInstitucional, password,tipoVendedor,tipoComprador, fotoPerfil,fotoCredencial) => {
   try {
     const matriculaValida = matricula !== undefined ? matricula : null;
     const nombreValido = nombre !== undefined ? nombre : null;
     const apellidoPaternoValido = apellidoPaterno !== undefined ? apellidoPaterno : null;
     const apellidoMaternoValido = apellidoMaterno !== undefined ? apellidoMaterno : null;
     const correoInstitucionalValido = correoInstitucional !== undefined ? correoInstitucional : null;
-    const passwordValida = password !== undefined ? password : null;
     const tipoVendedorValido = tipoVendedor !== undefined ? tipoVendedor : null;
     const tipoCompradorValido = tipoComprador !== undefined ? tipoComprador : null;
     const fotoPerfilValida = fotoPerfil !== undefined ? fotoPerfil : null;
     const fotoCredencialValida = fotoCredencial !== undefined ? fotoCredencial : null;
+
+    const passwordValida = bcrypt.hashSync(pepper + password, 10);
+
     const [estudiante] = await (await conexion)
       .execute('UPDATE estudiante SET nombre= ? , apellidoPaterno= ?, apellidoMaterno= ?, correoInstitucional= ?, password= ?,  tipoVendedor= ?,tipoComprador=?,fotoPerfil= ?,fotoCredencial= ? WHERE matricula = ?',
       [ nombreValido, apellidoPaternoValido, apellidoMaternoValido, correoInstitucionalValido, passwordValida, tipoVendedorValido, tipoCompradorValido, fotoPerfilValida, fotoCredencialValida,matriculaValida]);
@@ -85,7 +106,7 @@ const updateEstudent = async (matricula, nombre, apellidoPaterno, apellidoMatern
   }
 }
 
-const deleteEstudent = async (matricula) => {
+const deleteStudent = async (matricula) => {
   try {
     const [estudiante] = await (await conexion)
       .execute('DELETE FROM estudiante WHERE matricula = ?',
@@ -98,10 +119,10 @@ const deleteEstudent = async (matricula) => {
 }
 
 module.exports = { 
-  getAllEstudent,
-  getAllEstudentById, 
+  getAllEstudent: getAllStudents,
+  getAllEstudentById: getAllStudentsById, 
   getIdByCredentials, 
-  createEstudent,
-  updateEstudent,
-  deleteEstudent
+  createEstudent: createStudent,
+  updateEstudent: updateStudent,
+  deleteEstudent: deleteStudent
  }

@@ -25,10 +25,13 @@ const estudiantesLogin = async (req, res = response) => {
   const estudiante = await dao.getIdByCredentials(correoInstitucional, password);
   if ( estudiante== null) {
     res.status(404).json({ msg: "verifique sus credenciales de acceso" });
+    return;
   }
  
   try {
     const token = await generarJWT(estudiante);
+
+    estudiante.password = '';
   
     res.json({
       estudiante,
@@ -52,7 +55,7 @@ const estudiantesCreate = async (req, res = response) => {
     });
   } catch (error) {
     console.log(fotoCredencial);
-    res.status(500).json({ msg: "Error al crear el cuenta" });
+    res.status(500).json({ msg: "Error al crear la cuenta" });
     
   }
 }

@@ -1,124 +1,931 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
-    "description": "Este es un ejemplo de documentación de una API con el CRUD de Usuarios",
-    "version": "1.0.0",
-    "title": "API usuarios"
+    "title": "API de sistema de cafetería",
+    "description": "API de sistema de cafetería",
+    "version": "1.0.0"
   },
-  "servers": [
-    {
-      "url": "http://localhost:8080/api/usuarios",
-      "description": "Entorno local desarrollo"
-    }
-  ],
-  "tags": [
-    {
-      "name": "usuarios",
-      "description": "Maneja la información de los usuarios del sistema"
-    }
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "http"
   ],
   "paths": {
-    "/": {
+    "/api/estudiantes/login": {
       "post": {
-        "tags": [
-          "usuarios"
-        ],
-        "summary": "Inserta información de nuevo usuario en la base de datos",
+        "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/token"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BodyUsuariosCrear"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "(OK) La información del usuario se guardo correctamente",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExitoUsuariosCreado"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "correoInstitucional": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
                 }
               }
             }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           },
           "404": {
-            "$ref": "#/components/responses/NotFound"
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/estudiantes/all": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/estudiantes/{matricula}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "matricula",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "matricula",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "example": "any"
+                },
+                "apellidoPaterno": {
+                  "example": "any"
+                },
+                "apellidoMaterno": {
+                  "example": "any"
+                },
+                "correoInstitucional": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "tipoVendedor": {
+                  "example": "any"
+                },
+                "tipoComprador": {
+                  "example": "any"
+                },
+                "fotoPerfil": {
+                  "example": "any"
+                },
+                "fotoCredencial": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           },
           "500": {
-            "$ref": "#/components/responses/ServerError"
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "responses": {
-      "Unauthorized": {
-        "description": "(Unauthorized) No hay autorización para llamar al servicio"
-      },
-      "NotFound": {
-        "description": "(NotFound) No se encontró información"
-      },
-      "BadRequest": {
-        "description": "(Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados"
-      },
-      "ServerError": {
-        "description": "Error en servidor"
-      }
-    },
-    "parameters": {
-      "token": {
-        "in": "header",
-        "name": "x-token",
-        "description": "Token de autenticación.",
-        "required": true,
-        "schema": {
-          "type": "string"
-        }
-      }
-    },
-    "schemas": {
-      "BodyUsuariosCrear": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Nombre completo del usuario"
-          },
-          "email": {
-            "type": "string",
-            "description": "Email del usuario"
-          },
-          "password": {
-            "type": "string",
-            "description": "Password del usuario"
+            "description": "Internal Server Error"
           }
         }
       },
-      "ExitoUsuariosCreado": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "enum": [
-              15
-            ],
-            "description": "Id correspondiente al usuario registrado en la base de datos"
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "matricula",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "matricula",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/estudiantes/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "matricula": {
+                  "example": "any"
+                },
+                "nombre": {
+                  "example": "any"
+                },
+                "apellidoPaterno": {
+                  "example": "any"
+                },
+                "apellidoMaterno": {
+                  "example": "any"
+                },
+                "correoInstitucional": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "tipoVendedor": {
+                  "example": "any"
+                },
+                "tipoComprador": {
+                  "example": "any"
+                },
+                "fotoPerfil": {
+                  "example": "any"
+                },
+                "fotoCredencial": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/pedido/all": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/pedido/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "preferencias": {
+                  "example": "any"
+                },
+                "fechaPedido": {
+                  "example": "any"
+                },
+                "precioTotal": {
+                  "example": "any"
+                },
+                "estado": {
+                  "example": "any"
+                },
+                "matricula": {
+                  "example": "any"
+                },
+                "id_producto": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/pedido/{matricula}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "matricula",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/pedido/{idPedido}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "preferencias": {
+                  "example": "any"
+                },
+                "fechaPedido": {
+                  "example": "any"
+                },
+                "precioTotal": {
+                  "example": "any"
+                },
+                "estado": {
+                  "example": "any"
+                },
+                "matricula": {
+                  "example": "any"
+                },
+                "id_producto": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/comprador/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idComprador": {
+                  "example": "any"
+                },
+                "matricula": {
+                  "example": "any"
+                },
+                "id_producto": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/comprador/{matricula}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "matricula",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/comprador/{idComprador}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "idComprador",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/producto/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "example": "any"
+                },
+                "descripcion": {
+                  "example": "any"
+                },
+                "cantidadDisponible": {
+                  "example": "any"
+                },
+                "horaVentaInicial": {
+                  "example": "any"
+                },
+                "horaVentaFinal": {
+                  "example": "any"
+                },
+                "puntoEncuentro": {
+                  "example": "any"
+                },
+                "precio": {
+                  "example": "any"
+                },
+                "estado": {
+                  "example": "any"
+                },
+                "foto": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/producto/{nombre,:matricula}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "nombre,:matricula",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/producto/{nombre}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/producto/id/{id_producto}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_producto",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/producto/subirImagen": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/producto/{id_producto}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_producto",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "example": "any"
+                },
+                "descripcion": {
+                  "example": "any"
+                },
+                "cantidadDisponible": {
+                  "example": "any"
+                },
+                "horaVentaInicial": {
+                  "example": "any"
+                },
+                "horaVentaFinal": {
+                  "example": "any"
+                },
+                "puntoEncuentro": {
+                  "example": "any"
+                },
+                "precio": {
+                  "example": "any"
+                },
+                "estado": {
+                  "example": "any"
+                },
+                "foto": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_producto",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/productosFavoritos/{matricula}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "matricula",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/productosFavoritos/busqueda/{id_producto}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_producto",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/productosFavoritos/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "matricula": {
+                  "example": "any"
+                },
+                "id_producto": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/productosFavoritos/{idFavoritos}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "idFavoritos",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/valoracion/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "descripcion": {
+                  "example": "any"
+                },
+                "calificacion": {
+                  "example": "any"
+                },
+                "id_producto": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/valoracion/{id_valoracion}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_valoracion",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "descripcion": {
+                  "example": "any"
+                },
+                "calificacion": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/vendedor/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "matricula": {
+                  "example": "any"
+                },
+                "id_producto": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/vendedor/{idVendedor}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "idVendedor",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/vendedor/{matricula}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "matricula",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/venta/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cantidad": {
+                  "example": "any"
+                },
+                "fecha_venta": {
+                  "example": "any"
+                },
+                "precio_total": {
+                  "example": "any"
+                },
+                "idPedido": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/venta/busqueda/{matricula}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "matricula",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
