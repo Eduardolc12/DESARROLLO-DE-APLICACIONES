@@ -174,6 +174,19 @@
                   "new": false,
                   "number": 3,
                   "score": ""
+                },
+                {
+                  "id": "8bd298e7-a1bd-4ee8-9868-977bda41b974",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "DDoS",
+                  "mitigation": "DDoS protections provided by Microsoft.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
                 }
               ]
             }
@@ -211,12 +224,349 @@
               "providesAuthentication": false,
               "threats": []
             }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data input",
+              "description": "The student inputs data into the web app",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "TSL",
+              "threats": [
+                {
+                  "id": "596f3126-52f5-44c5-bd2f-09c4f2ca3804",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Cross site scripting and SQL injection attacks.",
+                  "mitigation": "Sanitizing inputs in the front end.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "6b115324-43fa-41bd-b5d9-2874ad475412",
+            "source": {
+              "x": 790,
+              "y": 300
+            },
+            "target": {
+              "cell": "8c3865c1-0360-4c4e-ab66-3a03ce47999b"
+            },
+            "vertices": [
+              {
+                "x": 700,
+                "y": 300
+              }
+            ],
+            "labels": [
+              "Data input"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Requests",
+              "description": "Requests from the frontend to the API ",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "TLS",
+              "threats": []
+            },
+            "id": "06963108-24ec-4f01-a385-40376844bc2c",
+            "source": {
+              "cell": "8c3865c1-0360-4c4e-ab66-3a03ce47999b"
+            },
+            "target": {
+              "cell": "370c172d-28f7-4242-a639-d678471f73b8"
+            },
+            "vertices": [
+              {
+                "x": 490,
+                "y": 400
+              }
+            ],
+            "labels": [
+              "Requests"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Responses",
+              "description": "Responses from the database to the API.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "457f123b-d1db-4121-a882-73f46d6804c5",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Man-in-the-middle attack.",
+                  "mitigation": "Using a secure transport protocol, like TLS with the appropriate SSL certificates.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "22477331-369c-46bc-bb0b-1022729c7278",
+            "source": {
+              "cell": "0937dc14-6846-42ae-8bfd-97463cb02290"
+            },
+            "target": {
+              "cell": "370c172d-28f7-4242-a639-d678471f73b8"
+            },
+            "vertices": [
+              {
+                "x": 280,
+                "y": 410
+              }
+            ],
+            "labels": [
+              "Responses"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Responses",
+              "description": "Repsonses from the API to the frontend.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "TLS",
+              "threats": [
+                {
+                  "id": "ba1a5926-ee3b-43e6-9010-044f1e504497",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Cross site scripting.",
+                  "mitigation": "Sanitizing inputs before communicating them to the API.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "aa9b2b31-d3f5-4237-8ce1-cf4c4b02b936",
+            "source": {
+              "cell": "370c172d-28f7-4242-a639-d678471f73b8"
+            },
+            "target": {
+              "cell": "8c3865c1-0360-4c4e-ab66-3a03ce47999b"
+            },
+            "vertices": [
+              {
+                "x": 490,
+                "y": 210
+              },
+              {
+                "x": 540,
+                "y": 210
+              }
+            ],
+            "labels": [
+              "Responses"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Queries",
+              "description": "Queries from the API to the database.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "TLS",
+              "threats": [
+                {
+                  "id": "21a64e1e-a8b4-464d-bdea-099d4fa6962a",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "SQL injection",
+                  "mitigation": "Sanitizing inputs and using parameterized queries.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "4fb1f1fc-294e-475b-917d-9baec329c568",
+            "source": {
+              "cell": "370c172d-28f7-4242-a639-d678471f73b8"
+            },
+            "target": {
+              "cell": "0937dc14-6846-42ae-8bfd-97463cb02290"
+            },
+            "vertices": [
+              {
+                "x": 280,
+                "y": 220
+              }
+            ],
+            "labels": [
+              "Queries"
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Azure firewall",
+              "description": "Firewall provided by microsoft for azure services.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "0c2a34d8-8494-42b6-b1e4-a7b39e960bf6",
+            "source": {
+              "x": 650,
+              "y": 30
+            },
+            "target": {
+              "x": 650,
+              "y": 480
+            },
+            "vertices": [
+              {
+                "x": 680,
+                "y": 230
+              },
+              {
+                "x": 680,
+                "y": 290
+              }
+            ],
+            "labels": [
+              "Azure firewall"
+            ]
           }
         ]
       }
     ],
     "diagramTop": 1,
     "reviewer": "eduardo",
-    "threatTop": 3
+    "threatTop": 8
   }
 }
