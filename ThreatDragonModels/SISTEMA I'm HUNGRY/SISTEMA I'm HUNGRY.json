@@ -1,0 +1,30 @@
+{
+  "version": "2.2.0",
+  "summary": {
+    "title": "SISTEMA I'm HUNGRY",
+    "owner": "Eduardo chacon",
+    "description": "El sistema de software I’m Hungry, es un producto de software destinado a los estudiantes e\nintegrantes que conforman el proceso de compra y venta de alimentos en la Facultad de\nEstadística e Informática perteneciente a la Universidad Veracruzana. Es decir, el sistema de\nsoftware es destinado a los estudiantes vendedores que desean ofrecer sus productos para la\nventa dentro de la FEI, es destinado a su vez a los estudiantes compradores que buscan productos\npara el consumo dentro de la FEI y personal perteneciente a la facultad que desee fungir alguno de\nestos roles.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "ctr305"
+      }
+    ],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "Diagrama de flujo de datos para el sitio web de I´M HUNGRY",
+        "diagramType": "STRIDE",
+        "placeholder": "Descripción de nuevo diagrama STRIDE",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": []
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "eduardo",
+    "threatTop": 0
+  }
+}
